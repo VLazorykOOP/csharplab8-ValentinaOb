@@ -101,6 +101,8 @@ int max=0;
     }
 } 
 
+Console.WriteLine("\nText: "+File.ReadAllText("3.txt"));
+
 File.WriteAllText("4.txt",max.ToString());
 
 Console.WriteLine("\nMax: "+File.ReadAllText("4.txt"));
@@ -150,14 +152,14 @@ foreach(string i in str){
     k++;
 }}
 
-Console.WriteLine("N: ");
+Console.WriteLine("\nN: ");
 foreach (int i in n){
-Console.WriteLine(i);
+Console.Write(i+" ");
 }
 
-Console.WriteLine("Str: ");
+Console.WriteLine("\nStr: ");
 foreach (string i in str){
-Console.WriteLine(i);
+Console.Write(i+" ");
 }
 
 File.WriteAllText("6.txt",file);
@@ -177,8 +179,9 @@ Console.WriteLine("N: ");
  int n = Convert.ToInt32(Console.ReadLine());
 double[] numb=new double[n];
 
+Console.WriteLine("Numbers: ");
 for(int i=0; i<n;i++){
-numb[i]= Convert.ToDouble(Console.Read());
+numb[i]= Convert.ToDouble(Console.ReadLine());
 }
 
 
@@ -221,18 +224,22 @@ if (!Directory.Exists("Student2"))
 }
 */
 
-File.Create(dir2);
+//File.Create(dir2);
 string t1="Шевченко Степан Іванович, 2001 року народження, місце проживання м. Суми";
-File.WriteAllText("Student1/1.txt",t1);
+File.WriteAllText(dir2,t1);
 
-File.Create(dir3);
+//File.Create(dir3);
 string t2="Комар Сергій Федорович, 2000 року народження, місце проживання м. Київ";
-File.WriteAllText("Student2/2.txt",t2);
+File.WriteAllText(dir3,t2);
 
-File.Create(dir4);
-File.WriteAllText("Student2/2.txt","Student1/1.txt");
-File.WriteAllText("2.txt","\n");
-File.WriteAllText("Student2/2.txt","Student1/2.txt");
+//File.Create(dir4);
+
+
+File.AppendAllText(dir4, File.ReadAllText(dir2)+"\n");
+File.AppendAllText(dir4, File.ReadAllText(dir3));
+//File.WriteAllText(dir4,dir2);
+//File.WriteAllText(dir4,"\n");
+//File.WriteAllText(dir4,dir3);
 
 
 Console.WriteLine("\nInfo 1: ");
@@ -251,10 +258,10 @@ Console.WriteLine(Directory.GetLastWriteTime(dir1));
 Console.WriteLine(Directory.GetFiles(dir1));
 
 
-File.Move(dir3, dir1);
-File.Copy(dir2, dir1);
-Directory.Move(dir1, dir5);
-Directory.Delete(dir);
+File.Move(@"D:\Chnu\csharplab8-ValentinaOb\Lab8CSharp\Student1\2.txt", @"D:\Chnu\csharplab8-ValentinaOb\Lab8CSharp\Student2\2.txt");
+File.Copy(@"D:\Chnu\csharplab8-ValentinaOb\Lab8CSharp\Student1\1.txt", @"D:\Chnu\csharplab8-ValentinaOb\Lab8CSharp\Student2\1.txt");
+Directory.Move(@"D:\Chnu\csharplab8-ValentinaOb\Lab8CSharp\Student2", dir5);
+Directory.Delete(dir, true);
 
 Console.WriteLine("\nInfo 3: ");
 Console.WriteLine(Directory.GetCreationTime(dir5));
